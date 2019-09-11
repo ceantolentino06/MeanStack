@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <style>
+        .center #buttons {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        
+        body {
+            background-color: green;
+        }
+    </style>
+    <title>Realtime-colors</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container center">
+            <div id="buttons">
+                <button id="green" class="btn btn-light btn-lg pr-5 pl-5 m-3">Green</button>
+                <button id="blue" class="btn btn-light btn-lg pr-5 pl-5 m-3">Blue</button>
+                <button id="red" class="btn btn-light btn-lg pr-5 pl-5 m-3">Red</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+
+        var socket = io(); //1
+
+        socket.on('current_color', function(data) {
+            $('body').css('background-color', data);
+        })
+        $('#red').click(function() {
+            socket.emit('change_color', 'red')
+        });
+        $('#blue').click(function() {
+            socket.emit('change_color', 'blue')
+        });
+        $('#green').click(function() {
+            socket.emit('change_color', 'green')
+        });
+    })
+</script>
+
+</html>

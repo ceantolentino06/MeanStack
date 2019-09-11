@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Howard</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Details Page for <%= howard.name %></h1>
+        <img class="rounded-circle mb-4" src="/images/<%= howard.pic %>" style="height: 250px; width: 300px" alt="">
+        <div class="container border bg-info p-3 mb-2">
+            <h3>Favorite Food: <%= howard.fav_food %></h3>
+        </div>
+        <div class="container border bg-info p-3 mb-2">
+            <h3>Age: <%= howard.age %></h3>
+        </div>
+        <div class="container border bg-info p-3 mb-2">
+            <h3>Sleeping spots:</h3>
+            <% for(var spot of howard.sleeping_spots) { %>
+                <p><%= spot %></p>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

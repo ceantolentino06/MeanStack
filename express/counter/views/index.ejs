@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        $(document).ready(function() {
+            var socket = io(); //1
+            socket.on('server_counter', function(data) { //4
+                var counter = data.counter;
+                console.log(data.counter) //5
+                socket.emit('client_count', {
+                    counter: counter
+                }); //6
+            });
+        })
+    </script>
+    <title>Counter</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container text-center">
+            <h1>Counter</h1>
+            <p>
+                <%=times%> times.</p>
+            <a href="/reset" class="btn btn-primary">Reset</a>
+        </div>
+    </div>
+</body>
+
+</html>

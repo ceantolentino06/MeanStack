@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var socket = io(); //1
+            socket.on('server_counter', function(data) {
+                $('#counter').html(data.counter);
+            });
+
+            $('#add').click(function() {
+                socket.emit('client_counter');
+            });
+
+            $('#reset').click(function() {
+                socket.emit('client_reset');
+            })
+        });
+    </script>
+    <title>Epic Button Game</title>
+</head>
+<div class="container text-center">
+    <h1>The button has been pushed <span id="counter"></span> time(s)</h1>
+    <p>Push the button to update the count!</p>
+    <button id="add" class="btn btn-primary btn-lg">Push the epic button</button>
+    <button id="reset" class="btn btn-danger">Reset</button>
+</div>
+
+<body>
+
+</body>
+
+</html>

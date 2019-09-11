@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title>Quoting Dojo</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container">
+            <h1 class="text-center">Welcome to Quoting Dojo</h1>
+            <div class="container col-8">
+                <% JSON.stringify(messages) %>
+                <!-- based on the structure of your messages, determine how to display them -->
+                <form action="/quotes" method="POST">
+                    <div class="form-group">
+                        <label for="quoted_by">You name:</label>
+                        <input class="form-control" type="text" name="quoted_by" id="quoted_by">
+                        <% if(messages.quoted_by) { %>
+                            <small class="text-danger d-block"><%= messages.quoted_by %></small>
+                            <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote">You quote:</label>
+                        <textarea class="form-control" name="quote" id="quote" cols="30" rows="5"></textarea>
+                        <% if(messages.quote) { %>
+                            <small class="text-danger d-block"><%= messages.quote %></small>
+                            <% } %>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add my quote!</button>
+                    <a href="/quotes" class="btn btn-success float-right">Skip to quotes!</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

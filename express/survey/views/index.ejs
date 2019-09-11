@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        $(document).ready(function() {
+
+            var socket = io(); //1
+
+            socket.on('random', function(data) { //4
+                $('#post').html(data.post);
+                $('#random').html(data.random_number);
+            });
+
+            $('button').click(function() {
+                var postData = {
+                    name: $('#name').val(),
+                    dojo: $('#dojo').val(),
+                    lang: $('#lang').val(),
+                    comment: $('#comment').val()
+                };
+                socket.emit('posting_form', {
+                    post: postData
+                }); //6
+
+            });
+        })
+    </script>
+    <title>Survey form</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container text-center bg-success">
+            <div id="results">
+                <p id="post"></p>
+                <p id="random"></p>
+            </div>
+        </div>
+        <div class="container col-8 border mt-5 p-3">
+            <div class="form-group">
+                <label for="name">Your name:</label>
+                <input class="form-control" type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="name">Dojo Location:</label>
+                <select class="form-control col-6" name="dojo" id="dojo">
+                        <option value="Mountain View">Mountain View</option>
+                        <option value="Oakland">Oakland</option>
+                        <option value="San Jose">San Jose</option>
+                        <option value="Seattle">Seattle</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="name">Favorite Language:</label>
+                <select class="form-control col-6" name="lang" id="lang">
+                        <option value="Java">Java</option>
+                        <option value="Javascript">Javascript</option>
+                        <option value="Python">Python</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment (optional):</label>
+                <textarea class="form-control" name="comment" id="comment" cols="30" rows="3"></textarea>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</body>
+
+</html>

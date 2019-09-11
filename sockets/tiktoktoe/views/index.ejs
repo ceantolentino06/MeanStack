@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title>Tik Tok Toe</title>
+    <style>
+        input {
+            margin: 10px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            console.log($('#btn1').val());
+            var socket = io(); //1
+
+            socket.on('greeting', function(data) { //4
+                console.log(data.msg); //5
+                socket.emit('thankyou', {
+                    msg: 'Thank you for connecting me! -Client'
+                }); //6
+            });
+        })
+    </script>
+</head>
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="container">
+            <div id="game" class="row p-3 text-center">
+                <div class="col-4 d-inline">
+                    <input type="button" class="btn btn-light" id="btn1" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn2" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn3" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn4" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn5" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn6" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn7" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn8" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-light" id="btn9" value="" style="height: 200px; width: 200px; font-size: 100px;"></input>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

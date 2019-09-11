@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title>Mongoose Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container">
+            <h1 class="text-center">All Animals</h1>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Animal</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var animal of animals) { %>
+                    <tr>
+                        <td><%=animal.name%></td>
+                        <td><%=animal.animal%></td>
+                        <td><a href="/<%=animal.id%>">Show</a> | <a href="/edit/<%=animal.id%>">Edit</a> | <form method="POST" action="/destroy/<%=animal.id%>" class="d-inline-block">
+                                <input type="submit" class="btn-link" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <a href="/new" class="btn btn-primary">Add new animal</a>
+        </div>
+    </div>
+</body>
+
+</html>

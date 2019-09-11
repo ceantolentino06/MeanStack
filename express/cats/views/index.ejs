@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Cats</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">All Cats</h1>
+        <% for(var cat of cats) { %>
+            <div class="container text-center mb-3">
+                <a href="/<%= cat.name %>">
+                    <img class="rounded-circle" src="/images/<%= cat.pic %>" style="height: 250px; width: 300px" alt="">
+                </a>
+            </div>
+        <% } %>
+    </div>
+</body>
+
+</html>

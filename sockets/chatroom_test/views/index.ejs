@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title>Chatroom Test</title>
+    <script>
+        $(document).ready(function() {
+            var socket = io(); //1
+            var name = prompt("Please enter your name:")
+            console.log(name)
+            socket.on('all_users', function(data) {
+                console.log(data)
+                for (var user of data) {
+                    var htmlStr = `<div class=' container col-4 '>
+                    <div class='card'>
+                        <div class='card-header'>
+                            ${user}
+                        </div>
+                        <div class='card-body' style='height: 200px;'>
+                        </div>
+                    </div>
+                </div>`
+                    $('#users').append(htmlStr);
+                }
+            });
+            socket.emit('got_a_new_user', name);
+            socket.on('new_user', function(data) {
+                var htmlStr = `<div class=' container col-4 '>
+                    <div class='card'>
+                        <div class='card-header'>
+                            ${data}
+                        </div>
+                        <div class='card-body' style='height: 200px;'>
+                        </div>
+                    </div>
+                </div>`
+                $('#users').append(htmlStr);
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container p-3">
+        <div class="container text-center">
+            <div class="row" id="users">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
