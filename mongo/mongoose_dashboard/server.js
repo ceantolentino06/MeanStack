@@ -3,17 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const body_parser = require('body-parser')
 const flash = require('express-flash');
+
 app.use(flash());
-mongoose.connect('mongodb://localhost/animalsdb', { useNewUrlParser: true });
-
-const AnimalSchema = new mongoose.Schema({
-    name: { type: String, required: [true, "This field cannot be empty"], minlength: [2, "Must 2 characters long"] },
-    animal: { type: String, required: [true, "This field cannot be empty"], minlength: [2, "Must be 2 characters long"] }
-}, { timestamps: true });
-
-
-const Animal = mongoose.model('Animal', AnimalSchema);
-
 app.use(express.static(__dirname + "/static"));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -25,6 +16,17 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 60000 }
 }))
+
+mongoose.connect('mongodb://localhost/animalsdb', { useNewUrlParser: true });
+
+const AnimalSchema = new mongoose.Schema({
+    name: { type: String, required: [true, "This field cannot be empty"], minlength: [2, "Must 2 characters long"] },
+    animal: { type: String, required: [true, "This field cannot be empty"], minlength: [2, "Must be 2 characters long"] }
+}, { timestamps: true });
+
+
+const Animal = mongoose.model('Animal', AnimalSchema);
+
 app.get('/', (request, response) => {
     Animal.find()
         .then(animals => {
