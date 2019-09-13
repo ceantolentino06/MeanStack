@@ -14,4 +14,12 @@ export class HttpService {
   getTaskById(id: String){
     return this._http.get(`/tasks/${id}`);
   }
+
+  getPokemon(){
+    return this._http.get('https://pokeapi.co/api/v2/pokemon/1/')
+  }
+
+  getPokemonByAbility(url: string){
+    return this._http.get(url);
+  }
 }

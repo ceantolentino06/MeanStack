@@ -7,16 +7,16 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   title = 'public';
-
+  tasks:any;
   constructor(private _httpService: HttpService){
-    this.getAllTasks();
-    this.getOneTask("5d7971a6a6e85443dd0acb53");
+    
   }
 
   getAllTasks(){
     let observable = this._httpService.getTasks()
     observable.subscribe((data)=>{
       console.log(data);
+      this.tasks = data;
     })
       
   }
@@ -25,6 +25,18 @@ export class AppComponent {
     let observable = this._httpService.getTaskById(id)
     observable.subscribe((data)=>{
       console.log(data);
+    })
+  }
+
+  getBulbasaur(){
+    let observable = this._httpService.getPokemon();
+    observable.subscribe((data)=>{
+      console.log(data);
+      console.log(`${data['name']}'s abilities are ${data['abilities'][0]['ability']['name']} and ${data['abilities'][1]['ability']['name']}`)
+      let getSameAbilityObs = this._httpService.getPokemonByAbility(data['abilities'][0]['ability']['url'])
+      getSameAbilityObs.subscribe((result)=>{
+        console.log(`${result['pokemon'].length} have Pokemon the ${result['name']} ability`)
+      })
     })
   }
 }
