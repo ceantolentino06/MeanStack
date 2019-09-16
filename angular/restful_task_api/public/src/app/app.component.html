@@ -10,13 +10,28 @@
 
 <body>
   <div class="container">
-    <div class="container">
+    <div class="container text-center">
       <h1>Restful Tasks API</h1>
-      <ul *ngFor="let task of tasks">
-        <li>{{task.title}}</li>
-      </ul>
-      <h1>The third task</h1>
-      {{tasks[2].title}}
+      <button class="btn btn-primary btn-lg mb-4" (click)="getAllTasks()">GET ALL TASK</button>
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let task of tasks">
+            <tr>
+              <td>{{task.title}}</td>
+              <td><button (click)="getOneTask(task._id)" class="btn btn-link">Show</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="text" class="" >
+        <div *ngIf="task!=null">
+          <p>{{task.title}}</p>
+          <p>{{task.description}}</p>
+        </div>
     </div>
   </div>
 </body>

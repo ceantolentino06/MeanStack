@@ -8,6 +8,7 @@ import { HttpService } from './http.service';
 export class AppComponent implements OnInit{
   title = 'public';
   tasks:any;
+  task:any;
   constructor(private _httpService: HttpService){
 
   }
@@ -21,12 +22,17 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.getAllTasks();
+
+  }
+
+  do(event: any){
+    console.log(event)
   }
 
   getOneTask(id: String){
     let observable = this._httpService.getTaskById(id)
     observable.subscribe((data)=>{
+      this.task = data;
       console.log(data);
     })
   }
