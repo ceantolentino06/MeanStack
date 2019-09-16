@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-    <button (click)="getAllTasks()">Get Data</button>
-    <div *ngFor="let task of tasks">
-      <p>{{ task.title }}</p>
+  <div class="container">
+    <div class="container">
+      <h1>Restful Tasks API</h1>
+      <ul *ngFor="let task of tasks">
+        <li>{{task.title}}</li>
+      </ul>
+      <h1>The third task</h1>
+      {{tasks[2].title}}
     </div>
+  </div>
 </body>
+
 </html>
