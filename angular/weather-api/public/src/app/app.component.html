@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="text-center">Dojo Weather Forecast</h1>
+  <div class="text-center">
+    <button class="btn btn-link" [routerLink]="['/seattle']">Seattle WA</button> | <button class="btn btn-link" [routerLink]="['/sanjose']">San Jose CA</button> | <button
+      class="btn btn-link">Burbank CA</button> | <button class="btn btn-link">Dallas TX</button> | <button
+      class="btn btn-link">Washington DC</button> | <button class="btn btn-link">Chicago IL</button>
+  </div>
+</div>
+<div class="container mt-3 border p-3">
+  <router-outlet></router-outlet>
+</div>

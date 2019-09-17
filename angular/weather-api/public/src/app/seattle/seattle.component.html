@@ -1,0 +1,14 @@
+<h1 class="text-center">Seattle, WA</h1>
+<div class="row">
+    <div class="col-6" *ngIf="weather!=undefined">
+        <p> Humidity: {{ weather.main.humidity }}</p>
+        <p> Temperature: {{ weather.main.temp }}</p>
+        <p> Temperature (High): {{ weather.main.temp_max }}</p>
+        <p> Temperature (Low): {{ weather.main.temp_min }}</p>
+        <p> Status: {{ weather.weather[0].description }}</p>
+    </div>
+    <div class="col-6">
+        <img class="img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Seattle_Kerry_Park_Skyline.jpg" alt="">
+    </div>
+</div>
+
