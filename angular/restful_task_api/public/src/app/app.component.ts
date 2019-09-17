@@ -6,10 +6,11 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'public';
+  title = '';
   tasks: any;
   task: any;
   newTask: any;
+  selectedTask: any;
   constructor(private _httpService: HttpService) {
 
   }
@@ -41,10 +42,18 @@ export class AppComponent implements OnInit {
 
   }
 
-  getOneTask(id: String) {
+  getOneToUpdate(id: String) {
     this._httpService.getTaskById(id)
       .subscribe((data) => {
         this.task = data;
+        console.log(data);
+      })
+  }
+
+  getOneTask(id: String) {
+    this._httpService.getTaskById(id)
+      .subscribe((data) => {
+        this.selectedTask = data;
         console.log(data);
       })
   }

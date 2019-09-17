@@ -35,8 +35,11 @@
                 <div class="card-body">
                   <h5 class="card-title">{{task.title}}</h5>
                   <p class="card-text">{{task.description}}</p>
-                  <button class="btn btn-info btn-sm" (click)="getOneTask(task._id)">Edit</button>
+
+                  <button class="btn btn-info btn-sm" (click)="getOneToUpdate(task._id)">Edit</button>
                   <button class="btn btn-danger btn-sm ml-3" (click)="deleteTask(task._id)">Delete</button>
+                  <button class="btn btn-success btn-sm ml-3" (click)="getOneTask(task._id)">Show</button>
+
                 </div>
               </div>
             </div>
@@ -60,6 +63,7 @@
         </div>
       </div>
     </div>
+    <app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task> 
   </div>
 </body>
 
