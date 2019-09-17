@@ -5,45 +5,72 @@ import { HttpService } from './http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'public';
-  tasks:any;
-  task:any;
-  constructor(private _httpService: HttpService){
+  tasks: any;
+  task: any;
+  newTask: any;
+  constructor(private _httpService: HttpService) {
 
   }
 
-  getAllTasks(){
+  ngOnInit() {
+    this.newTask = { "title": "", "description": "" }
+    this.task = { "title": "", "description": "" }
+    this.getAllTasks();
+  }
+
+  getAllTasks() {
     let observable = this._httpService.getTasks()
-    observable.subscribe((data)=>{
+    observable.subscribe((data) => {
       console.log(data);
       this.tasks = data;
     })
   }
 
-  ngOnInit(){
-
-  }
-
-  do(event: any){
+  do(event: any) {
     console.log(event)
   }
 
-  getOneTask(id: String){
-    let observable = this._httpService.getTaskById(id)
-    observable.subscribe((data)=>{
-      this.task = data;
-      console.log(data);
-    })
+  submitCreate() {
+    this._httpService.addTask(this.newTask)
+      .subscribe((data) => {
+        this.newTask = { "title": "", "description": "" }
+        this.getAllTasks();
+      })
+
   }
 
-  getBulbasaur(){
+  getOneTask(id: String) {
+    this._httpService.getTaskById(id)
+      .subscribe((data) => {
+        this.task = data;
+        console.log(data);
+      })
+  }
+
+  deleteTask(id: String) {
+    this._httpService.deleteOneTask(id)
+      .subscribe((data) => {
+        this.getAllTasks();
+      })
+  }
+
+  submitUpdate() {
+    this._httpService.updateTask(this.task)
+      .subscribe((data) => {
+        this.newTask = { "title": "", "description": "" }
+        this.getAllTasks();
+      })
+  }
+
+  getBulbasaur() {
     let observable = this._httpService.getPokemon();
-    observable.subscribe((data)=>{
+    observable.subscribe((data) => {
       console.log(data);
       console.log(`${data['name']}'s abilities are ${data['abilities'][0]['ability']['name']} and ${data['abilities'][1]['ability']['name']}`)
       let getSameAbilityObs = this._httpService.getPokemonByAbility(data['abilities'][0]['ability']['url'])
-      getSameAbilityObs.subscribe((result)=>{
+      getSameAbilityObs.subscribe((result) => {
         console.log(`${result['pokemon'].length} have Pokemon the ${result['name']} ability`)
       })
     })

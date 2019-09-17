@@ -9,29 +9,56 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="container text-center">
-      <h1>Restful Tasks API</h1>
-      <button class="btn btn-primary btn-lg mb-4" (click)="getAllTasks()">GET ALL TASK</button>
-      <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let task of tasks">
-            <tr>
-              <td>{{task.title}}</td>
-              <td><button (click)="getOneTask(task._id)" class="btn btn-link">Show</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <input type="text" class="" >
-        <div *ngIf="task!=null">
-          <p>{{task.title}}</p>
-          <p>{{task.description}}</p>
+  <div class="container p-3">
+    <h1 class="text-center">Restful Tasks API</h1>
+    <div class="container">
+      <h3>Create new task</h3>
+      <form (submit)="submitCreate()" class="col-6">
+        <div class="form-group">
+          <input class="form-control" type="text" name="newTask.title" [(ngModel)]="newTask.title"
+            placeholder="Title" />
         </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="newTask.description" [(ngModel)]="newTask.description"
+            placeholder="Description" />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create Task" />
+      </form>
+    </div>
+    <div class="row mt-3">
+      <div class="container col-8">
+        <h3>Task List</h3>
+        <div class="row">
+          <div *ngFor="let task of tasks">
+            <div class="col-6 mt-3">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{task.title}}</h5>
+                  <p class="card-text">{{task.description}}</p>
+                  <button class="btn btn-info btn-sm" (click)="getOneTask(task._id)">Edit</button>
+                  <button class="btn btn-danger btn-sm ml-3" (click)="deleteTask(task._id)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container col-4">
+        <h3>Edit a task</h3>
+        <div class="mt-4">
+          <form (submit)="submitUpdate()">
+            <div class="form-group">
+              <input class="form-control" type="text" name="newTask.title" [(ngModel)]="task.title"
+                placeholder="Title" />
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="newTask.description" [(ngModel)]="task.description"
+                placeholder="Description" />
+            </div>
+            <input type="submit" class="btn btn-primary" value="Edit Task" />
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </body>

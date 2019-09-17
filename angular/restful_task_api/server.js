@@ -38,7 +38,7 @@ app.get('/tasks/:id', (req, res) => {
         .catch(err => res.json(err))
 })
 
-app.post('/tasks', (req, res) => {
+app.post('/task', (req, res) => {
     console.log(req.body)
     Task.create(req.body)
         .then(data => res.json(data))

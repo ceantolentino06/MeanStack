@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>{{title}}</title>
+</head>
+
+<body>
+  <div class="container p-3">
+    <div class="container">
+      <h5>Gold: <span class="text-warning">{{ninja_score}}</span></h5>
+      <div class="locations row text-center">
+        <div class="col-3 border p-3">
+          <h3>Farm</h3>
+          <p>(earns 10-20 gold)</p>
+          <button class="btn btn-warning text-white" (click)="findGold('farm')">Find Gold!</button>
+        </div>
+        <div class="col-3 border p-3">
+          <h3>Cave</h3>
+          <p>(earns 5-10 gold)</p>
+          <button class="btn btn-warning text-white" (click)="findGold('cave')">Find Gold!</button>
+        </div>
+        <div class="col-3 border p-3">
+          <h3>House</h3>
+          <p>(earns 2-5 gold)</p>
+          <button class="btn btn-warning text-white" (click)="findGold('house')">Find Gold!</button>
+        </div>
+        <div class="col-3 border p-3">
+          <h3>Casino</h3>
+          <p>(earns/takes 0-50 gold)</p>
+          <button class="btn btn-warning text-white" (click)="findGold('casino')">Find Gold!</button>
+        </div>
+      </div>
+      <h5 class="mt-2">Activity:</h5>
+      <div class="border overflow-auto pl-2" id="activities" style="height: 250px">
+        <p class="m-0 text-success">Test</p>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

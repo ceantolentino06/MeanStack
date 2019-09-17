@@ -15,6 +15,18 @@ export class HttpService {
     return this._http.get(`/tasks/${id}`);
   }
 
+  addTask(newTask){
+    return this._http.post("/task", newTask);
+  }
+
+  updateTask(task){
+    return this._http.put(`/tasks/${task._id}`, task)
+  }
+
+  deleteOneTask(id: String){
+    return this._http.delete(`/tasks/${id}`)
+  }
+
   getPokemon(){
     return this._http.get('https://pokeapi.co/api/v2/pokemon/1/')
   }
