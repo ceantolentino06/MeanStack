@@ -1,0 +1,11 @@
+<div class="container col-7">
+    <a href="" [routerLink]="['/']">Home</a>
+    <h5>Edit this author:</h5>
+    <form (submit)="onSubmit()">
+        <input type="text" class="form-control" placeholder="Author name" name="author.name"
+            [(ngModel)]="author.name">
+        <small class="text-danger d-block" *ngIf="err.name!=undefined">{{err.name.message}}</small>
+        <button type="submit" class="btn btn-primary float-right mt-3">Edit Author</button>
+        <button class="btn btn-secondary mt-3" [routerLink]="['/']">Cancel</button>
+    </form>
+</div>

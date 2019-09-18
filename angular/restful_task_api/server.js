@@ -46,7 +46,7 @@ app.post('/task', (req, res) => {
 })
 
 app.put('/tasks/:id', (req, res) => {
-    Task.findByIdAndUpdate(req.params.id, req.body)
+    Task.findByIdAndUpdate(req.params.id, req.body, {runValidators:true})
         .then(data => res.json(data))
         .catch(err => res.json(err))
 })

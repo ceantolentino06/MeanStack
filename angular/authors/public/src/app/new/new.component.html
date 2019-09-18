@@ -1,0 +1,10 @@
+<div class="container col-7">
+    <a href="" [routerLink]="['/']">Home</a>
+    <h5>Add new author:</h5>
+    <form (submit)="onSubmit()">
+        <input type="text" class="form-control" placeholder="Author name" name="newAuthor.name" [(ngModel)]="newAuthor.name">
+        <small class="text-danger d-block" *ngIf="err.name!=undefined">{{err.name.message}}</small>
+        <button type="submit" class="btn btn-primary float-right mt-3">Create Author</button>
+        <button class="btn btn-secondary mt-3" [routerLink]="['/']">Cancel</button>
+    </form>
+</div>
